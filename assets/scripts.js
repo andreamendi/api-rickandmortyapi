@@ -6,30 +6,54 @@ const estado = document.getElementById('statusCharacter');
 console.log(estado);
 const genero = document.getElementById('genderCharacter');
 console.log(genero);
-const apiUrlCharacter = "https://rickandmortyapi.com/api/character/";
+let apiUrlCharacter = "https://rickandmortyapi.com/api/character/";
 
 //Section
  const card = document.getElementById('cardCharacter');
 
+let characterAlive = 0;
+let characterDead = 0;
+let characterUnknow = 0;
+
 
 formCharacter.addEventListener('submit', function(event){
     event.preventDefault();
-    fetch(apiUrlCharacter)
-        .then(function(response){
-            // console.log(response);
-            return response.json();
 
-        }).then(function(respJSON) {
-            console.log(respJSON);
-            const personajes = respJSON.results;
-            imprimirPersonajes(personajes);
+    apiIternate(apiUrlCharacter);
+    card.innerHTML = '';
+    function apiIternate(apiUrl){
+        fetch(apiUrl)
+            .then(function(response){
+                console.log("response");
+                console.log(response);
+                return response.json();
 
-        }).catch(function(error){
-            console.log(error);
-    })
+            }).then(function(respJSON) {
+                console.log("respJSON");
+                console.log(respJSON.info.next);
+                const personajes = respJSON.results;
+                imprimirPersonajes(personajes);
+
+
+                apiUrlCharacter = respJSON.info.next;
+                
+                if(apiUrlCharacter != ''){
+                    apiIternate(apiUrlCharacter);
+                } else{
+                    apiUrlCharacter = "https://rickandmortyapi.com/api/character/";
+                }
+                
+                
+
+            }).catch(function(error){
+                console.log(error);
+        })
+    }
+    
 
     function imprimirPersonajes(personajes){
-        card.innerHTML = '';
+        
+
         let generoCharacter = genero.value;
         console.log(generoCharacter);
         let statusCharacter = estado.value;
@@ -39,12 +63,31 @@ formCharacter.addEventListener('submit', function(event){
             if(character.gender == generoCharacter && character.status == statusCharacter){
                 console.log(generoCharacter);
                 card.innerHTML += `
-                    <p>${character.name}</p>
-                    <img src="${character.image}">
-                    
+                    <div class="card-character">
+                        <p class="name-character">Name: ${character.name}</p>
+                        <p class="name-character">Ubicación: ${character.location.name}</p>
+                        <p class="name-character">Especie: ${character.species}</p>
+                        <p class="name-character">Lugar de Origen: ${character.origin.name}</p>
+                        <img class="img-character" src="${character.image}">
+                        
+                    </div>
                 `
             }
-        }
+            switch(character.status) {
+            
+                case "Alive":
+                    characterAlive++;
+                    console.log(" Alive:",characterAlive);
+
+                case "dead":
+                    characterDead++;
+                    console.log(characterDead);
+
+                case "unknow":
+                    characterUnknow++;
+                    console.log(characterUnknow);
+                }
+            }
         console.log(character);
         if(character.length == 0){
             card.innerHTML += `No hay tipos ${generoCharacter} y ${statusCharacter} `

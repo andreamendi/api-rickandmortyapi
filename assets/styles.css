@@ -42,6 +42,10 @@ h2{
     text-align: center;
     display: inline;
 }
+.form-character label{
+    font-family: var(--fuenteBase);
+    font-weight: 100;
+}
 footer{
     background-color: var(--footerColor);
     font-family: var(--fuenteBase);
@@ -55,23 +59,158 @@ footer{
     box-sizing: border-box;
     border-color: yellowgreen;
     border: 1px;
+
     border-radius: 10px;
     height: 10px;
 }
-
-
-
+.card-character{
+    font-family: var(--fuenteBase);;
+    background-color: #F5F749 ;
+    display: inline-block;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 20px;
+    width: 200px;
+    min-height: 50px;
+    font-size: 1vw;
+}
+.name-character{
+    font-size: 15px;
+}
+.img-character{
+    width: 100px;
+}
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
 @media (min-width: 1281px) {
     header {
         height: 30vw;
     }
+    body{
+        background-color: orange;
+    }
+    .form-character label{
+        font-size: 2vw;
+    }
+    .form-character select{
+        font-size: 1vw;
+        padding-bottom: 10px;
+        margin-bottom:  20px;
+    }
+    .form-character h2{
+        font-size: 30px;
+    }
 }
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
 @media (min-width: 1025px) and (max-width: 1280px) {
   
     header {
         height: 20vw;
     }
     .cabezero{
-        padding-top: 100px; 
+        padding-top: 80px; 
+    }
+    body{
+        background-color: greenyellow;
+    }
+    .form-character label{
+        font-size: 20px;
+    }
+    .form-character select{
+        font-size: 15px;        
+        padding-bottom:10px;
+        margin-bottom:  20px;
+    }
+    .form-character h2{
+        font-size: 25px;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+    header {
+        height: 20vw;
+    }
+    .cabezero{
+        padding-top: 60px; 
+    }
+    body{
+        background-color: goldenrod;
+    }
+    .form-character label{
+        font-size: 20px;
+    }
+    .form-character select{
+        font-size: 15px;            
+        padding-bottom:10px;
+        margin-bottom:  20px;
+    }
+    .form-character h2{
+        font-size: 40px;
+    }
+    
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+    header {
+        height: 20vw;
+    }
+    .cabezero{
+        padding-top: 30px; 
+    }
+    body{
+        background-color: red;
+    }
+    .form-character label{
+        font-size: 20px;
+    }
+    .form-character select{
+        font-size: 15px;
+        padding-bottom:10px;
+        margin-bottom:  20px;
+    }
+    .form-character h2{
+        font-size: 30px;
+    }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px){
+    header {
+        height: 30vw;
+    }
+    .cabezero{
+        padding-top: 30px; 
+    }
+    body{
+        background-color: blue;
+    }
+    .form-character label{
+        font-size: 20px;
+    }
+    .form-character select{
+        font-size: 15px;
+        padding-bottom:10px;
+        margin-bottom:  20px;
+    }
+    .form-character h2{
+        font-size: 30px;
     }
 }
